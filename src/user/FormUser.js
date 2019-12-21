@@ -27,6 +27,7 @@ const FormUser = ({ onClose, fetchData, dataSelected }) => {
   });
 
   useEffect(() => {
+    console.log(dataSelected);
     setFormControlValue(dataSelected, UserSchema, setValue);
   }, [dataSelected, setValue]);
 
@@ -50,9 +51,9 @@ const FormUser = ({ onClose, fetchData, dataSelected }) => {
       }
       try {
         await action.then(data => {
-          alert("Successed");
           onClose();
           reset();
+          alert("Successed");
         });
       } catch (error) {
         alert(error);
@@ -118,6 +119,7 @@ const FormUser = ({ onClose, fetchData, dataSelected }) => {
                   color="dark-1"
                   onClick={() => {
                     onClose();
+                    reset();
                   }}
                   label="Cancel"
                 />

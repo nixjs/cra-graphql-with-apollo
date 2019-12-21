@@ -57,7 +57,10 @@ function App() {
           onClickOutside={() => setShow(false)}
         >
           <FormUser
-            onClose={() => setShow(false)}
+            onClose={() => {
+              setShow(false);
+              setDataSelected(null);
+            }}
             fetchData={() => fetchData()}
             dataSelected={dataSelected}
           />
