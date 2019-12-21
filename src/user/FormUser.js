@@ -1,7 +1,7 @@
-import React, { memo, useState, useEffect, useCallback } from "react";
+import React, { memo, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import * as Yup from "yup";
-import { Box, Button, TextInput, Text, Form, FormField } from "grommet";
+import { Box, Button, TextInput, Form, FormField } from "grommet";
 import { useMutation } from "@apollo/react-hooks";
 import useForm from "react-hook-form";
 import { FIELDS_USER } from "./const";
