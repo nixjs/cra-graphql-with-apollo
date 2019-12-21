@@ -13,7 +13,7 @@ import { FormClose, Edit } from "grommet-icons";
 import { useQuery } from "@apollo/react-hooks";
 import ALL_USER from "../graphql/queries";
 
-function ListUser() {
+function ListUser({ onDataSelected }) {
   const { loading, error, data } = useQuery(ALL_USER);
   const columns = [
     {
@@ -33,23 +33,16 @@ function ListUser() {
       align: "left"
     }
   ];
-  const onEditItem = useCallback((_event, data) => {}, []);
 
-  const onRemoveItem = useCallback((_event, id) => {}, []);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
   return (
     <>
       <div className="list-user">
-        <Box
-          direction="row"
-          justify="center"
-          align="center"
-          pad={{ top: "medium" }}
-        >
+        <Box direction="row" justify="center" align="center">
           <div className="user">
             {data.allUsers && (
-              <Table caption="User Table">
+              <Table>
                 <TableHeader>
                   <TableRow>
                     {columns.map(c => (
@@ -90,7 +83,7 @@ function ListUser() {
                         <Button
                           type="button"
                           onClick={e => {
-                            onRemoveItem(e, datum.id);
+                            onDataSelected(e, datum, "REMOVE");
                           }}
                         >
                           <FormClose color="brand" />
@@ -98,7 +91,7 @@ function ListUser() {
                         <Button
                           type="button"
                           onClick={e => {
-                            onEditItem(e, datum);
+                            onDataSelected(e, datum, "EDIT");
                           }}
                         >
                           <Edit color="brand" />
